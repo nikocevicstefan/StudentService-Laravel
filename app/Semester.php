@@ -15,4 +15,9 @@ class Semester extends Model
     {
         return $this->belongsToMany('App\Student', 'payments');
     }
+
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject');
+    }
 }

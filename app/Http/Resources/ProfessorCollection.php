@@ -14,6 +14,8 @@ class ProfessorCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => ProfessorResource::collection($this->collection),
+        ];
     }
 }
