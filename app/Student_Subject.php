@@ -8,11 +8,11 @@ class Student_Subject extends Model
 {
     public function subjects()
     {
-        return $this->belongsToMany('App\Subject');
+        return $this->belongsTo('App\Subject');
     }
 
     public function students()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsTo('App\Student');
     }
 }

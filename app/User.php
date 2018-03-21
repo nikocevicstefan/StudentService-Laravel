@@ -29,12 +29,12 @@ class User extends Authenticatable
 
     public function students()
     {
-        return $this->hasMany('App\Student');
+        return $this->hasOne('App\Student');
     }
 
     public function professors()
     {
-        return $this->hasMany('App\Professor');
+        return $this->hasOne('App\Professor');
     }
 
     public function role()
