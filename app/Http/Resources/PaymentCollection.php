@@ -14,6 +14,8 @@ class PaymentCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => PaymentResource::collection($this->collection),
+        ];
     }
 }

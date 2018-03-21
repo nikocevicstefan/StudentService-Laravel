@@ -14,6 +14,12 @@ class SemesterResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return
+            [
+                'id'        =>$this->id,
+                'name'      => $this->name,
+                'course'    => $this->course->name,
+                'subjects'  => SubjectResource::collection($this->subjects)
+            ];
     }
 }

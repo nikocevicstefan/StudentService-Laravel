@@ -16,13 +16,12 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $credentials = $request->only('email', 'password', 'username', 'name');
+        $credentials = $request->only('email', 'password', 'username');
 
         $rules = [
             'username' => 'required|max:255|unique:users',
             'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|max:255',
-            'name'     => 'required|max:255'
         ];
 
         $validator = Validator::make($credentials, $rules);
@@ -35,7 +34,7 @@ class AuthController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        User::create(['name' => $name, 'username' => $username, 'email' => $email, 'password' => Hash::make($password)]);
+        User::create(['username' => $username, 'email' => $email, 'password' => Hash::make($password)]);
         return response()->json(['success' => true, 'data'=> [ 'message' => 'registered successfully ']]);
 
         //Automatic login after register
