@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use App\User;
 use JWTAuth;
@@ -16,20 +18,6 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $credentials = $request->only('email', 'password', 'username', 'name');
-
-        $rules = [
-            'username' => 'required|max:255|unique:users',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|max:255',
-            'name'     => 'required|max:255'
-        ];
-
-        $validator = Validator::make($credentials, $rules);
-        if($validator->fails()) {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()]);
-        }
-
         $name = $request->name;
         $username = $request->username;
         $email = $request->email;
@@ -51,16 +39,6 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        $rules = [
-            'email'    => 'required|email',
-            'password' => 'required',
-        ];
-
-        $validator = Validator::make($credentials, $rules);
-        if($validator->fails()) {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()]);
-        }
-
         try {
             // attempt to verify the credentials and create a token for the user
             if (!$token = JWTAuth::attempt($credentials)) {

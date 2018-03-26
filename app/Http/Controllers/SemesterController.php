@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Semester;
 use Illuminate\Http\Request;
 
 class SemesterController extends Controller
@@ -13,7 +14,7 @@ class SemesterController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -24,7 +25,12 @@ class SemesterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->name; $course = $request->course;
+
+        Semester::create([
+           'name' => $name, 'course_id' => $course]);
+
+        return response()->json(['success' => true, 'data'=> [ 'message' => 'Semester successfully created']]);
     }
 
     /**

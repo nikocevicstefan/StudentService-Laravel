@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
+
+    protected $fillable = ['name', 'credits', 'description', 'semester_id'];
+
     public function semester()
     {
         return $this->belongsTo('App\Semester');
