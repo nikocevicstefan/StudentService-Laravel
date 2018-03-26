@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\SubjectCollection;
+use App\Http\Resources\SubjectResource;
 use App\Subject;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,12 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->name; $credits = $request->credits; $description = $request->description;  $semester = $request->semester;
+
+        Subject::create([
+            'name' => $name, 'credits' => $credits, 'description' => $description, 'semester_id' => $semester]);
+
+        return response()->json(['success' => true, 'data'=> [ 'message' => 'Subject '.$name.' successfully created']]);
     }
 
     /**
@@ -35,9 +41,9 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Subject $subject)
     {
-        //
+        return new SubjectResource($subject);
     }
 
     /**

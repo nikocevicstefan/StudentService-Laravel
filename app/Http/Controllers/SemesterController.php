@@ -26,7 +26,12 @@ class SemesterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->name; $course = $request->course;
+
+        Semester::create([
+           'name' => $name, 'course_id' => $course]);
+
+        return response()->json(['success' => true, 'data'=> [ 'message' => 'Semester successfully created']]);
     }
 
     /**

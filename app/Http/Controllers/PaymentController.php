@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Payment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -24,7 +25,9 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = $request->student; $semester = $request->semester; $amount = $request->amount;
+        Payment::create(['student_id'=>$student, 'semester_id'=>$semester, 'amount'=>$amount]);
+        return response()->json(['success' => true, 'data'=> [ 'message' => 'Payment successfully entered']]);
     }
 
     /**

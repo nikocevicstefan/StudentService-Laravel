@@ -27,7 +27,9 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->name;
+        Course::create(['name' => $name]);
+        return response()->json(['success' => true, 'data'=> [ 'message' => 'Course '.$name.' successfully created']]);
     }
 
     /**
