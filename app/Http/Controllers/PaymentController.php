@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PaymentCollection;
+use App\Http\Resources\PaymentResource;
 use App\Payment;
 use Illuminate\Http\Request;
 
@@ -10,11 +12,11 @@ class PaymentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return PaymentCollection
      */
     public function index()
     {
-        //
+        return new PaymentCollection(Payment::all());
     }
 
     /**
@@ -33,34 +35,47 @@ class PaymentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Payment $payment
+     * @return PaymentResource
      */
-    public function show($id)
+    public function show(Payment $payment)
     {
-        //
+        return new PaymentResource($payment);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Payment $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Payment $payment)
     {
-        //
+        $payment->student_id = request('student');
+        $payment->semester_id = request('semester');
+        $payment->amount = request('amount');
+        $payment->update();
+
+        return response()->json(['data' => $payment, 'status'=>['success' => true, 'message' => 'object updated'] ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Payment $payment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Payment $payment)
     {
-        //
+        try
+        {
+            $payment->delete();
+        }
+        catch (\Exception $e)
+        {
+            $e->getCode();
+        }
+        return response()->json(['status'=>['success' => true, 'message' => 'object deleted'] ],200);
     }
 }

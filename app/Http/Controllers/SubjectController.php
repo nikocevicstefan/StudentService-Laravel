@@ -38,8 +38,8 @@ class SubjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Subject $subject
+     * @return SubjectResource
      */
     public function show(Subject $subject)
     {
@@ -49,23 +49,37 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param Subject $subject
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Subject $subject)
     {
-        //
+        $subject->name =  request('name');
+        $subject->credits = request('credits');
+        $subject->description = request('description');
+        $subject->semester_id = request('semester');
+
+        $subject->update();
+        return response()->json(['status'=>['success'=>true, 'message' => 'Object updated']],200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Subject $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subject $subject)
     {
-        //
+        try
+        {
+            $subject->delete();
+        }catch (\Exception $exception)
+        {
+            $exception->getCode();
+        }
+
+        return response()->json(['status'=>['success' => true, 'message' => 'object deleted'] ],200);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,14 +28,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $user->username = request('username');
+        $user->email = request('email');
+        $user->password = Hash::make(request('password'));
+        $user->role_id = request('role');
+        $user->save();
+        return response()->json(['success' => true, 'data'=> [ 'message' => 'User successfully created']]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return UserResource
      */
     public function show(User $user)
     {
@@ -44,23 +51,35 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->username = request('username');
+        $user->email= request('email');
+        $user->password = Hash::make(request('password'));
+        $user->role_id = request('role');
+        $user->update();
+        return response()->json(['success' => true, 'data'=> [ 'message' => 'User successfully created']]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        try {
+            $user->delete();
+        } catch (Exception $e) {
+            $e->getCode();
+        }
+        return response()->json(['status'=>['success' => true, 'message' => 'user deleted'] ],
+            200);
     }
 }
