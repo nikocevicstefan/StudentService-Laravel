@@ -27,8 +27,10 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+
         $name = $request->name;
         Course::create(['name' => $name]);
+
         return response()->json(['success' => true, 'data'=> [ 'message' => 'Course '.$name.' successfully created']]);
     }
 
@@ -47,22 +49,33 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param Course $course
      * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        $course->name = request('name');
+        $course->update();
+        return response()->json(['data' => $course, 'status'=>['success' => true, 'message' => 'object updated'] ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     * @return void
+     * @param Course $course
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
-        //
+        try
+        {
+            $course->delete();
+        }
+        catch (\Exception $e)
+        {
+            $e->getCode();
+        }
+        return response()->json(['status'=>['success' => true, 'message' => 'object deleted'] ],200);
     }
 }

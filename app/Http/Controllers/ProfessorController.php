@@ -45,8 +45,8 @@ class ProfessorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Professor $professor
+     * @return ProfessorResource
      */
     public function show(Professor $professor)
     {
@@ -56,23 +56,37 @@ class ProfessorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Professor $professor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Professor $professor)
     {
-        //
+
+        $professor->first_name = request('firstname');
+        $professor->last_name = request('lastname');
+        $professor->birth_date = request('birthdate');
+        $professor->office = request('office');
+
+        $professor->update();
+
+        return response()->json(['success' => true, 'data'=> [ 'message' => 'Professor successfully updated']]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Professor $professor
+     * @return void
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Professor $professor)
     {
-        //
+        try {
+            $professor->delete();
+        } catch (\Exception $e) {
+            $e->getCode();
+        }
+        return response()->json(['status'=>['success' => true, 'message' => 'object deleted'] ],200);
     }
 }

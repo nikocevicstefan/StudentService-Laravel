@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Resources\StudentCollection;
 use App\Http\Resources\StudentResource;
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return StudentCollection
      */
     public function index()
     {
@@ -22,30 +24,37 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 
-        $username = $request->username; $email = $request->email; $password = $request->password; $role = $request->role;
+        $username = $request->username;
+        $email = $request->email;
+        $password = $request->password;
+        $role = $request->role;
 
-        $user =  User::create([
+        $user = User::create([
             'username' => $username, 'email' => $email, 'password' => Hash::make($password), 'role_id' => $role]);
 
-        $firstname = $request->firstname; $lastname = $request->lastname; $birthdate = $request->birthdate; $index = $request->index; $course = $request->course;
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
+        $birthdate = $request->birthdate;
+        $index = $request->index;
+        $course = $request->course;
 
         Student::create([
-            'first_name' => $firstname, 'last_name' => $lastname, 'birth_date' => $birthdate , 'index' => $index, 'course_id' => $course, 'user_id' => $user->id]);
+            'first_name' => $firstname, 'last_name' => $lastname, 'birth_date' => $birthdate, 'index' => $index, 'course_id' => $course, 'user_id' => $user->id]);
 
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Professor successfully created']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'Student successfully created']]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Student $student
+     * @return StudentResource
      */
     public function show(Student $student)
     {
@@ -55,23 +64,38 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Student $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Student $student)
     {
-        //
+
+
+        $student->first_name = request('firstname');
+        $student->last_name = request('lastname');
+        $student->birth_date = request('birthdate');
+        $student->index = request('index');
+        $student->course_id = request('course');
+
+        $student->update();
+        return response()->json(['success' => true, 'data' => ['message' => 'Student successfully updated']]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Student $student
+     * @return void
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        try {
+            $student->delete();
+        } catch (\Exception $e) {
+            $e->getCode();
+        }
+        return response()->json(['success' => true, 'data' => ['message' => 'Object deleted']], 200);
     }
 }

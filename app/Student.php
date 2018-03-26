@@ -25,4 +25,9 @@ class Student extends Model
     {
         return $this->belongsToMany('App\Subject','student_subject');
     }
+
+    public function course()
+    {
+        return $this->belongsTo('App\Course');
+    }
 }
