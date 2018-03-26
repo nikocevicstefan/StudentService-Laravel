@@ -15,8 +15,8 @@ class CreateStudentSubjectTable extends Migration
     {
         Schema::create('student_subject', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('points');
-            $table->enum('grade', ['A','B','C','D','E','F']);
+            $table->integer('points')->nullable();
+            $table->enum('grade', ['A','B','C','D','E','F'])->nullable();
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('subject_id');
             $table->timestamps();

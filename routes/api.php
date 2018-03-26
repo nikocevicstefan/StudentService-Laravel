@@ -20,6 +20,8 @@ Route::post('login', 'AuthController@login');Route::post('register', 'AuthContro
 Route::group(['middleware'=>['jwt.auth']], function()
 {
 
+    Route::resource('student_subject','Student_SubjectController');
+    Route::resource('subject_professor','Subject_ProfessorController');
     Route::resource('semesters','SemesterController');
     Route::resource('courses','CourseController');
     Route::resource('payments','PaymentController');
