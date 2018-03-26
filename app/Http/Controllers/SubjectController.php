@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SubjectCollection;
+use App\Subject;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -9,18 +11,18 @@ class SubjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return SubjectCollection
      */
     public function index()
     {
-        //
+        return new SubjectCollection(Subject::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return void
      */
     public function store(Request $request)
     {

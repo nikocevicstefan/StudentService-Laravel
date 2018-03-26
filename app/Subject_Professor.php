@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject_Professor extends Model
 {
+
+    protected $table = 'subject_professor';
+
     public function subject()
     {
         return $this->belongsTo('App\Subject');

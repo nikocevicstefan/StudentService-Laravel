@@ -15,4 +15,9 @@ class Professor extends Model
     {
         return $this->belongsToMany('App\Subject', 'subject_professor');
     }
+
+    public function subject_professor()
+    {
+        return $this->hasMany('App\Subject_Professor', 'professor_id');
+    }
 }

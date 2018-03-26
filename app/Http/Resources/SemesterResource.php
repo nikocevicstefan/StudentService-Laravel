@@ -17,6 +17,7 @@ class SemesterResource extends JsonResource
         return
             [
                 'id'        =>$this->id,
+                'type'      => 'Semester',
                 'name'      => $this->name,
                 'course'    => $this->course->name,
                 'subjects'  => SubjectResource::collection($this->subjects)

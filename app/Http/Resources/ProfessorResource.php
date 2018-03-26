@@ -16,14 +16,15 @@ class ProfessorResource extends JsonResource
     {
         return
             [
-                'type'        => 'Professor',
                 'id'          => $this->id,
+                'type'        => 'Professor',
                 'attributes'  => [
                     'First name'=>$this->first_name,
                     'Last name'=>$this->last_name,
                     'Birth date'=>$this->birth_date,
                     'Office number'=>$this->office,
                 ],
+                'subjects' => SubjectResource::collection($this->subjects),
             ];
     }
 }

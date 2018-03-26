@@ -17,12 +17,14 @@ class StudentResource extends JsonResource
         return
             [
                 'id'          => $this->id,
+                'type'         => 'Student',
                 'attributes'  => [
                     'first name'=> $this->first_name,
                     'last name'=> $this->last_name,
                     'birth date'=> $this->birth_date,
                     'index'=> $this->index,
                 ],
+                'Course' => $this->course->name,
             ];
     }
 }

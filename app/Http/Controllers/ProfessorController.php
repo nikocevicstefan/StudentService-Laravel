@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProfessorCollection;
+use App\Http\Resources\ProfessorResource;
+use App\Professor;
 use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
@@ -9,18 +12,18 @@ class ProfessorController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return ProfessorCollection
      */
     public function index()
     {
-        //
+        return new ProfessorCollection(Professor::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return void
      */
     public function store(Request $request)
     {

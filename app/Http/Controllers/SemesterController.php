@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SemesterCollection;
+use App\Semester;
 use Illuminate\Http\Request;
 
 class SemesterController extends Controller
@@ -13,7 +15,7 @@ class SemesterController extends Controller
      */
     public function index()
     {
-        //
+        return new SemesterCollection(Semester::all());
     }
 
     /**
