@@ -29,17 +29,23 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     {
-        $username = $request->username; $email = $request->email; $password = $request->password; $role = $request->role;
+        $username = $request->username;
+        $email = $request->email;
+        $password = $request->password;
+        $role = $request->role;
 
-        $user =  User::create([
+        $user = User::create([
             'username' => $username, 'email' => $email, 'password' => Hash::make($password), 'role_id' => $role]);
 
-        $firstname = $request->firstname; $lastname = $request->lastname; $birthdate = $request->birthdate; $office = $request->office;
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
+        $birthdate = $request->birthdate;
+        $office = $request->office;
 
         Professor::create([
-         'first_name' => $firstname, 'last_name' => $lastname, 'birth_date' => $birthdate , 'office' => $office, 'user_id' => $user->id]);
+            'first_name' => $firstname, 'last_name' => $lastname, 'birth_date' => $birthdate, 'office' => $office, 'user_id' => $user->id]);
 
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Professor successfully created']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'Professor successfully created']]);
     }
 
     /**
@@ -70,7 +76,7 @@ class ProfessorController extends Controller
 
         $professor->update();
 
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Professor successfully updated']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'Professor successfully updated']]);
     }
 
     /**
@@ -87,6 +93,6 @@ class ProfessorController extends Controller
         } catch (\Exception $e) {
             $e->getCode();
         }
-        return response()->json(['status'=>['success' => true, 'message' => 'object deleted'] ],200);
+        return response()->json(['status' => ['success' => true, 'message' => 'object deleted']], 200);
     }
 }

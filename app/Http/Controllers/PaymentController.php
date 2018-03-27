@@ -22,14 +22,16 @@ class PaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $student = $request->student; $semester = $request->semester; $amount = $request->amount;
-        Payment::create(['student_id'=>$student, 'semester_id'=>$semester, 'amount'=>$amount]);
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Payment successfully entered']]);
+        $student = $request->student;
+        $semester = $request->semester;
+        $amount = $request->amount;
+        Payment::create(['student_id' => $student, 'semester_id' => $semester, 'amount' => $amount]);
+        return response()->json(['success' => true, 'data' => ['message' => 'Payment successfully entered']]);
     }
 
     /**
@@ -57,7 +59,7 @@ class PaymentController extends Controller
         $payment->amount = request('amount');
         $payment->update();
 
-        return response()->json(['data' => $payment, 'status'=>['success' => true, 'message' => 'object updated'] ], 200);
+        return response()->json(['data' => $payment, 'status' => ['success' => true, 'message' => 'object updated']], 200);
     }
 
     /**
@@ -68,14 +70,11 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        try
-        {
+        try {
             $payment->delete();
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             $e->getCode();
         }
-        return response()->json(['status'=>['success' => true, 'message' => 'object deleted'] ],200);
+        return response()->json(['status' => ['success' => true, 'message' => 'object deleted']], 200);
     }
 }

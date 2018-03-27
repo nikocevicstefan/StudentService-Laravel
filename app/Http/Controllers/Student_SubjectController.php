@@ -32,7 +32,7 @@ class Student_SubjectController extends Controller
         Student_Subject::create([
             'student_id' => $student, 'subject_id' => $subject, 'points' => $points, 'grade' => $grade]);
 
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Student successfully added to subject.']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'Student successfully added to subject.']]);
     }
 
     /**

@@ -22,17 +22,18 @@ class SemesterController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $name = $request->name; $course = $request->course;
+        $name = $request->name;
+        $course = $request->course;
 
         Semester::create([
-           'name' => $name, 'course_id' => $course]);
+            'name' => $name, 'course_id' => $course]);
 
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Semester successfully created']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'Semester successfully created']]);
     }
 
     /**
@@ -58,7 +59,7 @@ class SemesterController extends Controller
         $semester->name = request('name');
         $semester->course_id = request('course');
         $semester->update();
-        return response()->json(['data'=> $semester, 'status'=>['success' => true, 'message' => 'Object updated']], 200);
+        return response()->json(['data' => $semester, 'status' => ['success' => true, 'message' => 'Object updated']], 200);
     }
 
     /**
@@ -69,13 +70,11 @@ class SemesterController extends Controller
      */
     public function destroy(Semester $semester)
     {
-        try
-        {
+        try {
             $semester->delete();
-        }catch(\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             $exception->getCode();
         }
-        return response()->json(['status' => ['success' => 'true', 'message' => 'Object deleted'] ], 200);
+        return response()->json(['status' => ['success' => 'true', 'message' => 'Object deleted']], 200);
     }
 }

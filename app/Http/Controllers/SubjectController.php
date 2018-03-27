@@ -27,12 +27,15 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->name; $credits = $request->credits; $description = $request->description;  $semester = $request->semester;
+        $name = $request->name;
+        $credits = $request->credits;
+        $description = $request->description;
+        $semester = $request->semester;
 
         Subject::create([
             'name' => $name, 'credits' => $credits, 'description' => $description, 'semester_id' => $semester]);
 
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Subject '.$name.' successfully created']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'Subject ' . $name . ' successfully created']]);
     }
 
     /**
@@ -55,13 +58,13 @@ class SubjectController extends Controller
      */
     public function update(Request $request, Subject $subject)
     {
-        $subject->name =  request('name');
+        $subject->name = request('name');
         $subject->credits = request('credits');
         $subject->description = request('description');
         $subject->semester_id = request('semester');
 
         $subject->update();
-        return response()->json(['status'=>['success'=>true, 'message' => 'Object updated']],200);
+        return response()->json(['status' => ['success' => true, 'message' => 'Object updated']], 200);
     }
 
     /**
@@ -72,14 +75,12 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        try
-        {
+        try {
             $subject->delete();
-        }catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
             $exception->getCode();
         }
 
-        return response()->json(['status'=>['success' => true, 'message' => 'object deleted'] ],200);
+        return response()->json(['status' => ['success' => true, 'message' => 'object deleted']], 200);
     }
 }

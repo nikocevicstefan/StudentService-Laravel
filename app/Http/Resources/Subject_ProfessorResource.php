@@ -9,7 +9,7 @@ class Subject_ProfessorResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -18,7 +18,7 @@ class Subject_ProfessorResource extends JsonResource
             'id' => $this->id,
             'professor_id' => $this->professor_id,
             'subject_id' => $this->subject_id,
-            'position'  => $this->position
+            'position' => $this->position
         ];
     }
 }

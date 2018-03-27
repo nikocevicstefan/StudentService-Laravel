@@ -23,7 +23,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -34,7 +34,7 @@ class UserController extends Controller
         $user->password = Hash::make(request('password'));
         $user->role_id = request('role');
         $user->save();
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'User successfully created']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'User successfully created']]);
     }
 
     /**
@@ -58,11 +58,11 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->username = request('username');
-        $user->email= request('email');
+        $user->email = request('email');
         $user->password = Hash::make(request('password'));
         $user->role_id = request('role');
         $user->update();
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'User successfully created']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'User successfully created']]);
     }
 
     /**
@@ -79,7 +79,7 @@ class UserController extends Controller
         } catch (Exception $e) {
             $e->getCode();
         }
-        return response()->json(['status'=>['success' => true, 'message' => 'user deleted'] ],
+        return response()->json(['status' => ['success' => true, 'message' => 'user deleted']],
             200);
     }
 }

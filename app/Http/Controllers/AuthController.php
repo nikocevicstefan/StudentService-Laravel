@@ -1,11 +1,14 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\User;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator;
 use DB, Hash, Mail, Illuminate\Support\Facades\Password;
+
 class AuthController extends Controller
 {
     /**
@@ -20,13 +23,13 @@ class AuthController extends Controller
 
         $rules = [
             'username' => 'required|max:255|unique:users',
-            'email'    => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|max:255',
         ];
 
         $validator = Validator::make($credentials, $rules);
-        if($validator->fails()) {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()]);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'error' => $validator->messages()]);
         }
 
         $name = $request->name;
@@ -35,7 +38,7 @@ class AuthController extends Controller
         $password = $request->password;
 
         User::create(['username' => $username, 'email' => $email, 'password' => Hash::make($password)]);
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'registered successfully ']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'registered successfully ']]);
 
         //Automatic login after register
         //return $this->login($request);
@@ -51,13 +54,13 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         $rules = [
-            'email'    => 'required|email',
+            'email' => 'required|email',
             'password' => 'required',
         ];
 
         $validator = Validator::make($credentials, $rules);
-        if($validator->fails()) {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()]);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'error' => $validator->messages()]);
         }
 
         try {
@@ -70,7 +73,7 @@ class AuthController extends Controller
             return response()->json(['success' => false, 'error' => 'Failed to login, please try again.'], 500);
         }
         // all good so return the token
-        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]]);
+        return response()->json(['success' => true, 'data' => ['token' => $token]]);
     }
 
     /**
@@ -80,15 +83,13 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function logout() {
+    public function logout()
+    {
 
-        try
-        {
+        try {
             JWTAuth::invalidate(JWTAuth::getToken());
-            return response()->json(['success' => true, 'message'=> "You have successfully logged out."]);
-        }
-        catch (JWTException $e)
-        {
+            return response()->json(['success' => true, 'message' => "You have successfully logged out."]);
+        } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
             return response()->json(['success' => false, 'error' => 'Failed to logout, please try again.'], 500);
         }

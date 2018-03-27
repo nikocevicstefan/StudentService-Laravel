@@ -31,7 +31,7 @@ class CourseController extends Controller
         $name = $request->name;
         Course::create(['name' => $name]);
 
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Course '.$name.' successfully created']]);
+        return response()->json(['success' => true, 'data' => ['message' => 'Course ' . $name . ' successfully created']]);
     }
 
     /**
@@ -56,7 +56,7 @@ class CourseController extends Controller
     {
         $course->name = request('name');
         $course->update();
-        return response()->json(['data' => $course, 'status'=>['success' => true, 'message' => 'object updated'] ], 200);
+        return response()->json(['data' => $course, 'status' => ['success' => true, 'message' => 'object updated']], 200);
     }
 
     /**
@@ -68,14 +68,11 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        try
-        {
+        try {
             $course->delete();
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             $e->getCode();
         }
-        return response()->json(['status'=>['success' => true, 'message' => 'object deleted'] ],200);
+        return response()->json(['status' => ['success' => true, 'message' => 'object deleted']], 200);
     }
 }

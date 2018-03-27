@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Resources\RoleCollection;
 use App\Http\Resources\RoleResource;
 use App\Role;
@@ -21,7 +22,7 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -30,7 +31,7 @@ class RoleController extends Controller
         $role->name = request('name');
         $role->save();
 
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Role successfully created']], 200);
+        return response()->json(['success' => true, 'data' => ['message' => 'Role successfully created']], 200);
     }
 
     /**
@@ -56,7 +57,7 @@ class RoleController extends Controller
         $role->name = request('name');
         $role->update();
 
-        return response()->json(['success' => true, 'data'=> [ 'message' => 'Role successfully updated']], 200);
+        return response()->json(['success' => true, 'data' => ['message' => 'Role successfully updated']], 200);
     }
 
     /**
@@ -72,6 +73,6 @@ class RoleController extends Controller
         } catch (\Exception $e) {
             $e->getCode();
         }
-        return response()->json(['status'=>['success' => true, 'message' => 'object deleted'] ], 200);
+        return response()->json(['status' => ['success' => true, 'message' => 'object deleted']], 200);
     }
 }

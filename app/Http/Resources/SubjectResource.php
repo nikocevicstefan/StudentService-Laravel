@@ -10,7 +10,7 @@ class SubjectResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -19,13 +19,13 @@ class SubjectResource extends JsonResource
 
         return
             [
-                'id'          => $this->id,
-                'type'        => 'Subject',
-                'attributes'  => [
-                    'name'=> $this->name,
-                    'credits'=> $this->credits,
-                    'description'=> $this->description,
-                    'semester'=> $this->semester->name,
+                'id' => $this->id,
+                'type' => 'Subject',
+                'attributes' => [
+                    'name' => $this->name,
+                    'credits' => $this->credits,
+                    'description' => $this->description,
+                    'semester' => $this->semester->name,
                     'professors' => $professors,
                 ],
             ];
