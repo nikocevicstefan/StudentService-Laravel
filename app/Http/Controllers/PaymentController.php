@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdatePayment;
 use App\Http\Resources\PaymentCollection;
 use App\Http\Resources\PaymentResource;
 use App\Payment;
@@ -22,10 +23,10 @@ class PaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdatePayment $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdatePayment $request)
     {
         $student = $request->student;
         $semester = $request->semester;
@@ -48,11 +49,11 @@ class PaymentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdatePayment $request
      * @param Payment $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Payment $payment)
+    public function update(StoreUpdatePayment $request, Payment $payment)
     {
         $payment->student_id = request('student');
         $payment->semester_id = request('semester');

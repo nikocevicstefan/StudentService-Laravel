@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateRole;
 use App\Http\Resources\RoleCollection;
 use App\Http\Resources\RoleResource;
 use App\Role;
@@ -22,10 +23,10 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdateRole $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateRole $request)
     {
         $role = new Role;
         $role->name = request('name');
@@ -48,11 +49,11 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdateRole $request
      * @param Role $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(StoreUpdateRole $request, Role $role)
     {
         $role->name = request('name');
         $role->update();

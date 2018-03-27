@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStudent;
+use App\Http\Requests\UpdateStudent;
 use App\Http\Resources\StudentCollection;
 use App\Http\Resources\StudentResource;
 use App\Student;
@@ -24,10 +26,10 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreStudent $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStudent $request)
     {
 
         $username = $request->username;
@@ -64,11 +66,11 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UpdateStudent $request
      * @param Student $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(UpdateStudent $request, Student $student)
     {
 
 

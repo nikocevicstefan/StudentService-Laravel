@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateUser;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\User;
@@ -23,10 +24,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdateUser $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateUser $request)
     {
         $user = new User;
         $user->username = request('username');
@@ -51,11 +52,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdateUser $request
      * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(StoreUpdateUser $request, User $user)
     {
         $user->username = request('username');
         $user->email = request('email');

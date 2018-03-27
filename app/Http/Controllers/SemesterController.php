@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateRole;
+use App\Http\Requests\StoreUpdateSemester;
 use App\Http\Resources\SemesterCollection;
 use App\Http\Resources\SemesterResource;
 use App\Semester;
@@ -22,10 +24,10 @@ class SemesterController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdateSemester $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateSemester $request)
     {
         $name = $request->name;
         $course = $request->course;
@@ -50,11 +52,11 @@ class SemesterController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdateSemester $request
      * @param Semester $semester
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Semester $semester)
+    public function update(StoreUpdateSemester $request, Semester $semester)
     {
         $semester->name = request('name');
         $semester->course_id = request('course');

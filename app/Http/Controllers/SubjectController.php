@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateSubject;
 use App\Http\Resources\SubjectCollection;
 use App\Http\Resources\SubjectResource;
 use App\Subject;
@@ -22,10 +23,10 @@ class SubjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdateSubject $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreUpdateSubject $request)
     {
         $name = $request->name;
         $credits = $request->credits;
@@ -52,11 +53,11 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreUpdateSubject $request
      * @param Subject $subject
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Subject $subject)
+    public function update(StoreUpdateSubject $request, Subject $subject)
     {
         $subject->name = request('name');
         $subject->credits = request('credits');

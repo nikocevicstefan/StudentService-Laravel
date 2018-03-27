@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProfessor;
+use App\Http\Requests\UpdateProfessor;
 use App\Http\Resources\ProfessorCollection;
 use App\Http\Resources\ProfessorResource;
 use App\Professor;
@@ -24,10 +26,10 @@ class ProfessorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreProfessor $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreProfessor $request)
     {
         $username = $request->username;
         $email = $request->email;
@@ -62,11 +64,11 @@ class ProfessorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UpdateProfessor $request
      * @param Professor $professor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Professor $professor)
+    public function update(UpdateProfessor $request, Professor $professor)
     {
 
         $professor->first_name = request('firstname');
