@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Resources\PaymentCollection;
-use App\Http\Resources\PaymentResource;
-use App\Payment;
+use App\Http\Resources\RoleCollection;
+use App\Http\Resources\RoleResource;
 use App\Role;
 use Illuminate\Http\Request;
 
@@ -13,11 +11,11 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return PaymentCollection
+     * @return RoleCollection
      */
     public function index()
     {
-        return new PaymentCollection(Payment::all());
+        return new RoleCollection(Role::all());
     }
 
     /**

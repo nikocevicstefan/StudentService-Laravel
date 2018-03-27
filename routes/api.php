@@ -28,6 +28,7 @@ Route::group(['middleware'=>['jwt.auth']], function()
     Route::resource('students','StudentController');
     Route::resource('professors','ProfessorController');
     Route::resource('users','UserController');
+    Route::resource('roles','RoleController');
     Route::resource('subjects','SubjectController');
     Route::get('logout', 'AuthController@logout');
 });
