@@ -56,7 +56,7 @@ class CourseController extends Controller
     {
         $course->name = request('name');
         $course->update();
-        return response()->json(['data' => $course, 'status' => ['success' => true, 'message' => 'object updated']], 200);
+        return response()->json(['data' => $course, 'status' => ['success' => true, 'message' => 'Course updated']], 200);
     }
 
     /**
@@ -73,6 +73,6 @@ class CourseController extends Controller
         } catch (\Exception $e) {
             $e->getCode();
         }
-        return response()->json(['status' => ['success' => true, 'message' => 'object deleted']], 200);
+        return response()->json(['status' => ['success' => true, 'message' => 'Course deleted']], 200);
     }
 }

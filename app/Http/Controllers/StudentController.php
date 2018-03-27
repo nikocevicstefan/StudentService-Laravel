@@ -96,6 +96,6 @@ class StudentController extends Controller
         } catch (\Exception $e) {
             $e->getCode();
         }
-        return response()->json(['success' => true, 'data' => ['message' => 'Object deleted']], 200);
+        return response()->json(['success' => true, 'data' => ['message' => 'Student deleted']], 200);
     }
 }

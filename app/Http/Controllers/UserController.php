@@ -79,7 +79,7 @@ class UserController extends Controller
         } catch (Exception $e) {
             $e->getCode();
         }
-        return response()->json(['status' => ['success' => true, 'message' => 'user deleted']],
+        return response()->json(['status' => ['success' => true, 'message' => 'User deleted']],
             200);
     }
 }

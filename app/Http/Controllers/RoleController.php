@@ -73,6 +73,6 @@ class RoleController extends Controller
         } catch (\Exception $e) {
             $e->getCode();
         }
-        return response()->json(['status' => ['success' => true, 'message' => 'object deleted']], 200);
+        return response()->json(['status' => ['success' => true, 'message' => 'Role deleted']], 200);
     }
 }

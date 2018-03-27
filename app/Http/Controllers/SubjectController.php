@@ -23,7 +23,7 @@ class SubjectController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -64,7 +64,7 @@ class SubjectController extends Controller
         $subject->semester_id = request('semester');
 
         $subject->update();
-        return response()->json(['status' => ['success' => true, 'message' => 'Object updated']], 200);
+        return response()->json(['status' => ['success' => true, 'message' => 'Subject updated']], 200);
     }
 
     /**
@@ -81,6 +81,6 @@ class SubjectController extends Controller
             $exception->getCode();
         }
 
-        return response()->json(['status' => ['success' => true, 'message' => 'object deleted']], 200);
+        return response()->json(['status' => ['success' => true, 'message' => 'Subject deleted']], 200);
     }
 }

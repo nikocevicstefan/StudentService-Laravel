@@ -10,7 +10,7 @@ class Student_SubjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return
+     * @return void
      */
     public function index()
     {
@@ -38,8 +38,7 @@ class Student_SubjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param
-     * @return
+     * @return void
      */
     public function show()
     {

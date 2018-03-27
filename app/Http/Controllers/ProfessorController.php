@@ -25,7 +25,7 @@ class ProfessorController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -93,6 +93,6 @@ class ProfessorController extends Controller
         } catch (\Exception $e) {
             $e->getCode();
         }
-        return response()->json(['status' => ['success' => true, 'message' => 'object deleted']], 200);
+        return response()->json(['status' => ['success' => true, 'message' => 'Professor deleted']], 200);
     }
 }

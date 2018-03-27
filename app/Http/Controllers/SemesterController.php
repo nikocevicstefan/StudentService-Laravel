@@ -59,7 +59,7 @@ class SemesterController extends Controller
         $semester->name = request('name');
         $semester->course_id = request('course');
         $semester->update();
-        return response()->json(['data' => $semester, 'status' => ['success' => true, 'message' => 'Object updated']], 200);
+        return response()->json(['data' => $semester, 'status' => ['success' => true, 'message' => 'Semester updated']], 200);
     }
 
     /**
@@ -75,6 +75,6 @@ class SemesterController extends Controller
         } catch (\Exception $exception) {
             $exception->getCode();
         }
-        return response()->json(['status' => ['success' => 'true', 'message' => 'Object deleted']], 200);
+        return response()->json(['status' => ['success' => 'true', 'message' => 'Semester deleted']], 200);
     }
 }
