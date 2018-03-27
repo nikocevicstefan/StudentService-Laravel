@@ -12,7 +12,7 @@ class CoursesTableSeeder extends Seeder
     public function run()
     {
         DB::table('courses')->insert([
-            'name' => 'Inormacione Tehnologije'
+            'name' => 'Informacione Tehnologije'
         ]);
 
         DB::table('courses')->insert([
