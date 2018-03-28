@@ -15,7 +15,8 @@ class Subject_StudentResource extends JsonResource
     public function toArray($request)
     {
         return [
-            $this->subject->info(),
+            'subjects' => $this->subject->info(),
+            'grade' => $this->points."(". $this->grade.")",
         ];
     }
 }

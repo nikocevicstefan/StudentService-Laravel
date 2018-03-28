@@ -37,6 +37,7 @@ class Subject extends Model
     {
         return
             [
+                'id' => $this->id,
                 'name' => $this->name,
             ];
     }
