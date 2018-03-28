@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateSubject;
+use App\Http\Resources\Student_SubjectCollection;
+use App\Http\Resources\StudentCollection;
+use App\Http\Resources\StudentResource;
 use App\Http\Resources\SubjectCollection;
 use App\Http\Resources\SubjectResource;
+use App\Student;
 use App\Subject;
 use Illuminate\Http\Request;
 
@@ -84,4 +88,9 @@ class SubjectController extends Controller
 
         return response()->json(['status' => ['success' => true, 'message' => 'Subject deleted']], 200);
     }
+
+    public function showStudents(Subject $subject){
+        return new Student_SubjectCollection($subject->student_subject);
+    }
+
 }

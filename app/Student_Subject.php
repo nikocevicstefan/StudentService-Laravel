@@ -11,13 +11,18 @@ class Student_Subject extends Model
 
     protected $fillable = ['student_id', 'subject_id', 'points', 'grade'];
 
-    public function subjects()
+    public function subject()
     {
         return $this->belongsTo('App\Subject');
     }
 
-    public function students()
+    public function student()
     {
         return $this->belongsTo('App\Student');
+    }
+
+    public function grade(){
+        return $this->points.'('.$this->grade.')';
+
     }
 }

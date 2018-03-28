@@ -27,6 +27,7 @@ class SubjectResource extends JsonResource
                     'description' => $this->description,
                     'semester' => $this->semester->name,
                     'professors' => $professors,
+                    'students' => $this->students
                 ],
             ];
     }

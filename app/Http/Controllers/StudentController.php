@@ -73,7 +73,6 @@ class StudentController extends Controller
     public function update(UpdateStudent $request, Student $student)
     {
 
-
         $student->first_name = request('firstname');
         $student->last_name = request('lastname');
         $student->birth_date = request('birthdate');

@@ -21,11 +21,16 @@ class Subject extends Model
 
     public function students()
     {
-        return $this->belongsToMany('App\Students', 'student_subject');
+        return $this->belongsToMany('App\Student', 'student_subject', 'subject_id', 'student_id');
+    }
+
+    public function student_subject(){
+        return $this->hasMany('App\Student_Subject');
     }
 
     public function subject_professor()
     {
         return $this->hasMany('App\Subject_Professor', 'subject_id');
     }
+
 }

@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::post('login', 'AuthController@login');Route::post('register', 'AuthController@register');
 
 
+Route::get('subjects/{subject}/students', 'SubjectController@showStudents');
 
 Route::group(['middleware'=>['jwt.auth']], function()
 {

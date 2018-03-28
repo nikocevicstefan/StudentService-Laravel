@@ -30,4 +30,13 @@ class Student extends Model
     {
         return $this->belongsTo('App\Course');
     }
+
+    public function info(){
+        return [
+            'id' => $this->id,
+            'full name' => $this->first_name.' '.$this->last_name,
+            'index' => $this->index
+            ];
+    }
+
 }
