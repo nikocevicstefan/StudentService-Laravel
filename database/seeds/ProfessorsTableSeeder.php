@@ -18,5 +18,13 @@ class ProfessorsTableSeeder extends Seeder
             'office' => '5',
             'user_id' => '2',
         ]);
+
+        DB::table('professors')->insert([
+            'first_name' => 'Prof',
+            'last_name' => 'Prof',
+            'birth_date' => '1965-02-02',
+            'office' => '5',
+            'user_id' => '6',
+        ]);
     }
 }

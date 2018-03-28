@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUpdateSubject;
 use App\Http\Resources\Student_SubjectCollection;
 use App\Http\Resources\StudentCollection;
 use App\Http\Resources\StudentResource;
+use App\Http\Resources\Subject_ProfessorCollection;
 use App\Http\Resources\SubjectCollection;
 use App\Http\Resources\SubjectResource;
 use App\Student;
@@ -91,6 +92,11 @@ class SubjectController extends Controller
 
     public function showStudents(Subject $subject){
         return new Student_SubjectCollection($subject->student_subject);
+    }
+
+    public function showProfessors(Subject $subject){
+        return new Subject_ProfessorCollection($subject->subject_professor);
+
     }
 
 }

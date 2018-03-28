@@ -24,7 +24,6 @@ class ProfessorResource extends JsonResource
                     'Birth date'=>$this->birth_date,
                     'Office number'=>$this->office,
                 ],
-                'subjects' => SubjectResource::collection($this->subjects),
             ];
     }
 }

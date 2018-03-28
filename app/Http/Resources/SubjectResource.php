@@ -15,7 +15,6 @@ class SubjectResource extends JsonResource
      */
     public function toArray($request)
     {
-        $professors = DB::table('subject_professor')->where('subject_id', $this->id)->select('professor_id', 'position')->get();
 
         return
             [
@@ -26,8 +25,7 @@ class SubjectResource extends JsonResource
                     'credits' => $this->credits,
                     'description' => $this->description,
                     'semester' => $this->semester->name,
-                    'professors' => $professors,
-                    'students' => $this->students
+                    'professors' => Subject_ProfessorResource::collection($this->subject_professor)
                 ],
             ];
     }

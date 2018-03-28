@@ -17,6 +17,7 @@ Route::post('login', 'AuthController@login');Route::post('register', 'AuthContro
 
 
 Route::get('subjects/{subject}/students', 'SubjectController@showStudents');
+Route::get('subjects/{subject}/professors', 'SubjectController@showProfessors');
 
 Route::group(['middleware'=>['jwt.auth']], function()
 {
