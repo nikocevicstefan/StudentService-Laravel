@@ -31,6 +31,10 @@ class Student extends Model
         return $this->belongsTo('App\Course');
     }
 
+    public function student_subject(){
+        return $this->hasMany('App\Student_Subject');
+    }
+
     public function info(){
         return [
             'id' => $this->id,

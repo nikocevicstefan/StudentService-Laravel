@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudent;
 use App\Http\Requests\UpdateStudent;
+use App\Http\Resources\Student_SubjectCollection;
 use App\Http\Resources\StudentCollection;
 use App\Http\Resources\StudentResource;
+use App\Http\Resources\Subject_StudentCollection;
+use App\Http\Resources\Subject_StudentResource;
 use App\Student;
 use App\User;
 use Illuminate\Http\Request;
@@ -61,6 +64,11 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         return new StudentResource($student);
+    }
+
+    public function showSubjects(Student $student)
+    {
+        return new Subject_StudentCollection($student->student_subject);
     }
 
     /**
