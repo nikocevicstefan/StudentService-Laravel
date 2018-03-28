@@ -33,4 +33,12 @@ class Subject extends Model
         return $this->hasMany('App\Subject_Professor', 'subject_id');
     }
 
+    public function info()
+    {
+        return
+            [
+                'name' => $this->name,
+            ];
+    }
+
 }
