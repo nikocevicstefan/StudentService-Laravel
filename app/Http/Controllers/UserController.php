@@ -33,7 +33,7 @@ class UserController extends Controller
         $user->username = request('username');
         $user->email = request('email');
         $user->password = Hash::make(request('password'));
-        $user->role_id = request('role');
+        $user->role_id = 1;
         $user->save();
         return response()->json(['success' => true, 'data' => ['message' => 'User successfully created']]);
     }
@@ -61,7 +61,6 @@ class UserController extends Controller
         $user->username = request('username');
         $user->email = request('email');
         $user->password = Hash::make(request('password'));
-        $user->role_id = request('role');
         $user->update();
         return response()->json(['success' => true, 'data' => ['message' => 'User successfully created']]);
     }

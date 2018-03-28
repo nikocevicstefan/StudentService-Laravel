@@ -35,7 +35,7 @@ class StudentController extends Controller
         $username = $request->username;
         $email = $request->email;
         $password = $request->password;
-        $role = $request->role;
+        $role = 3;
 
         $user = User::create([
             'username' => $username, 'email' => $email, 'password' => Hash::make($password), 'role_id' => $role]);

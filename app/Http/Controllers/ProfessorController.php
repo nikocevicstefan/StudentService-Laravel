@@ -34,7 +34,7 @@ class ProfessorController extends Controller
         $username = $request->username;
         $email = $request->email;
         $password = $request->password;
-        $role = $request->role;
+        $role = 2;
 
         $user = User::create([
             'username' => $username, 'email' => $email, 'password' => Hash::make($password), 'role_id' => $role]);

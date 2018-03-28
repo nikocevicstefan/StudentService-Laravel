@@ -27,7 +27,6 @@ class StoreUpdateUser extends FormRequest
             'username' => 'required|unique:users',
             'password' => 'required',
             'email' => 'required|unique:users',
-            'role' => 'required|numeric'
         ];
     }
     public function withValidator($validator)
