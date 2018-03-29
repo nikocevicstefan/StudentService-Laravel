@@ -11,38 +11,6 @@ use DB, Hash, Mail, Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
-    /**
-     * API Register
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function register(Request $request)
-    {
-        $credentials = $request->only('email', 'password', 'username');
-
-        $rules = [
-            'username' => 'required|max:255|unique:users',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|max:255',
-        ];
-
-        $validator = Validator::make($credentials, $rules);
-        if ($validator->fails()) {
-            return response()->json(['success' => false, 'error' => $validator->messages()]);
-        }
-
-        $name = $request->name;
-        $username = $request->username;
-        $email = $request->email;
-        $password = $request->password;
-
-        User::create(['username' => $username, 'email' => $email, 'password' => Hash::make($password)]);
-        return response()->json(['success' => true, 'data' => ['message' => 'registered successfully ']]);
-
-        //Automatic login after register
-        //return $this->login($request);
-    }
 
     /**
      * API Login, on success return JWT Auth token
@@ -95,4 +63,32 @@ class AuthController extends Controller
         }
 
     }
+
+    /**
+     * API Recover Password
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function recover(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            $error_message = "Your email address was not found.";
+            return response()->json(['success' => false, 'error' => ['email'=> $error_message]], 401);
+        }
+        try {
+            Password::sendResetLink($request->only('email'), function (Message $message) {
+                $message->subject('Your Password Reset Link');
+            });
+        } catch (\Exception $e) {
+            //Return with error
+            $error_message = $e->getMessage();
+            return response()->json(['success' => false, 'error' => $error_message], 401);
+        }
+        return response()->json([
+            'success' => true, 'data'=> ['message'=> 'A reset email has been sent! Please check your email.']
+        ]);
+    }
+
 }

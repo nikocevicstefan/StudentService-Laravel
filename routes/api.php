@@ -14,11 +14,9 @@ use Illuminate\Http\Request;
 */
 
 Route::post('login', 'AuthController@login');
-Route::post('register', 'AuthController@register');
+Route::post('recover', 'AuthController@recover');
 
-Route::get('subjects/{subject}/students', 'SubjectController@showStudents');
 Route::get('subjects/{subject}/professors', 'SubjectController@showProfessors');
-Route::get('students/{student}/subjects', 'StudentController@showSubjects');
 
 Route::group(['middleware'=>['jwt.auth']], function()
 {
@@ -47,6 +45,9 @@ Route::group(['middleware'=>['jwt.auth']], function()
     {
 
     });
+
+    Route::get('subjects/{subject}/students', 'SubjectController@showStudents');
+    Route::get('students/{student}/subjects', 'StudentController@showSubjects');
 
     Route::get('semesters','SemesterController@index');
     Route::get('courses','CourseController@index');
