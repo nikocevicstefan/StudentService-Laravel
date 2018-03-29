@@ -7,12 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
 
-    protected $fillable = ['student_id', 'semester_id', 'amount'];
+    protected $fillable = ['student_id', 'description', 'amount'];
 
-    public function semester()
-    {
-        return $this->belongsTo('App\Semester');
-    }
 
     public function student()
     {

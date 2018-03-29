@@ -15,14 +15,24 @@ class SubjectsTableSeeder extends Seeder
             'name' => 'WEB',
             'credits' => '5',
             'description' => 'First subject',
-            'semester_id' => '1',
+            'semester' => '1',
+            'course_id' => '1'
         ]);
 
         DB::table('subjects')->insert([
             'name' => 'IT',
             'credits' => '6',
             'description' => 'Second subject',
-            'semester_id' => '2'
+            'semester' => '2',
+            'course_id' => '1'
+        ]);
+
+        DB::table('subjects')->insert([
+            'name' => 'Web dizajn',
+            'credits' => '6',
+            'description' => 'Second subject',
+            'semester' => '1',
+            'course_id' => '2'
         ]);
     }
 }

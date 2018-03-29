@@ -25,7 +25,7 @@ class StoreUpdatePayment extends FormRequest
     {
         return [
             'student' => 'required|numeric|max:255',
-            'semester' => 'required|numeric|max:255',
+            'description' => 'required',
             'amount'   => 'required'
         ];
     }

@@ -24,7 +24,7 @@ class SubjectResource extends JsonResource
                     'name' => $this->name,
                     'credits' => $this->credits,
                     'description' => $this->description,
-                    'semester' => $this->semester->name,
+                    'semester' => $this->semester,
                     'professors' => Subject_ProfessorResource::collection($this->subject_professor)
                 ],
             ];

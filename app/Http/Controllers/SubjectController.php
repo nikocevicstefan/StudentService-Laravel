@@ -37,9 +37,10 @@ class SubjectController extends Controller
         $credits = $request->credits;
         $description = $request->description;
         $semester = $request->semester;
+        $course = $request->course;
 
         Subject::create([
-            'name' => $name, 'credits' => $credits, 'description' => $description, 'semester_id' => $semester]);
+            'name' => $name, 'credits' => $credits, 'description' => $description, 'semester' => $semester, 'course_id' => $course]);
 
         return response()->json(['success' => true, 'data' => ['message' => 'Subject ' . $name . ' successfully created']]);
     }
@@ -67,7 +68,8 @@ class SubjectController extends Controller
         $subject->name = request('name');
         $subject->credits = request('credits');
         $subject->description = request('description');
-        $subject->semester_id = request('semester');
+        $subject->semester = request('semester');
+        $subject->course_id = request('course');
 
         $subject->update();
         return response()->json(['status' => ['success' => true, 'message' => 'Subject updated']], 200);

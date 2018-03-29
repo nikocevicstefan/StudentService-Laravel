@@ -18,10 +18,11 @@ class CreateSubjectsTable extends Migration
             $table->string('name');
             $table->integer('credits');
             $table->string('description');
-            $table->unsignedInteger('semester_id');
+            $table->enum('semester', ['1', '2', '3', '4', '5', '6', '7', '8']);
+            $table->unsignedInteger('course_id');
             $table->timestamps();
 
-            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
     }
 

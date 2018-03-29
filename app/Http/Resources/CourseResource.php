@@ -19,7 +19,7 @@ class CourseResource extends JsonResource
                 'id' => $this->id,
                 'type' => 'Course',
                 'name' => $this->name,
-                'semesters' => SemesterResource::collection($this->semesters),
+                'subjects' => $this->subjects
             ];
     }
 }
