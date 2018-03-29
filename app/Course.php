@@ -8,13 +8,14 @@ class Course extends Model
 {
     protected $fillable = ['name'];
 
-    public function semesters()
-    {
-        return $this->hasMany('App\Semester');
-    }
 
     public function students()
     {
         return $this->hasMany('App\Student');
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject');
     }
 }

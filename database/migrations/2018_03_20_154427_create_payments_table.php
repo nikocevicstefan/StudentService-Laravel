@@ -16,12 +16,11 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('student_id');
-            $table->unsignedInteger('semester_id');
+            $table->string('description');
             $table->integer('amount');
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
         });
     }
 

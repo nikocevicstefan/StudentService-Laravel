@@ -28,6 +28,7 @@ class StoreUpdateSubject extends FormRequest
             'credits' => 'required|numeric',
             'description' => 'required',
             'semester' => 'required|numeric',
+            'course' => 'required',
         ];
     }
 

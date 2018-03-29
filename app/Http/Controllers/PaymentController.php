@@ -29,9 +29,9 @@ class PaymentController extends Controller
     public function store(StoreUpdatePayment $request)
     {
         $student = $request->student;
-        $semester = $request->semester;
+        $description = $request->description;
         $amount = $request->amount;
-        Payment::create(['student_id' => $student, 'semester_id' => $semester, 'amount' => $amount]);
+        Payment::create(['student_id' => $student, 'description' => $description, 'amount' => $amount]);
         return response()->json(['success' => true, 'data' => ['message' => 'Payment successfully entered']]);
     }
 
@@ -56,7 +56,7 @@ class PaymentController extends Controller
     public function update(StoreUpdatePayment $request, Payment $payment)
     {
         $payment->student_id = request('student');
-        $payment->semester_id = request('semester');
+        $payment->description = request('description');
         $payment->amount = request('amount');
         $payment->update();
 

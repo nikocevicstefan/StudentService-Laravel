@@ -28,8 +28,7 @@ Route::group(['middleware'=>['jwt.auth']], function()
         Route::resource('payments','PaymentController');
         Route::resource('users','UserController');
 
-        Route::resource('semesters','SemesterController',['except' => 'index','show']);
-        Route::resource('courses','CourseController',['except' => 'index','show']);
+        Route::resource('courses','CourseController',['except' => 'index', 'show']);
         Route::resource('students','StudentController',['except' => 'index','show']);
         Route::resource('professors','ProfessorController',['except' => 'index','show']);
         Route::resource('subjects','SubjectController',['except' => 'index','show']);
@@ -48,17 +47,16 @@ Route::group(['middleware'=>['jwt.auth']], function()
 
     });
 
-    Route::get('semesters','SemesterController@index');
+
     Route::get('courses','CourseController@index');
     Route::get('students','StudentController@index');
     Route::get('professors','ProfessorController@index');
     Route::get('subjects','SubjectController@index');
 
-    Route::get('semesters','SemesterController@show');
-    Route::get('courses','CourseController@show');
-    Route::get('students','StudentController@show');
-    Route::get('professors','ProfessorController@show');
-    Route::get('subjects','SubjectController@show');
+    Route::get('courses/{course}','CourseController@show');
+    Route::get('students/{students}','StudentController@show');
+    Route::get('professors/{professor}','ProfessorController@show');
+    Route::get('subjects/{subject}','SubjectController@show');
 
     Route::get('logout', 'AuthController@logout');
 });
